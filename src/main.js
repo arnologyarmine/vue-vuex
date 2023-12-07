@@ -21,6 +21,16 @@ const store = createStore({
     getCounterValue(state) {
       return state.counter * 2;
     },
+    normalizedCounterValue(_, getters) {
+      const getCounterValue = getters.getCounterValue;
+      if (getCounterValue < 0) {
+        return 0;
+      } else if (getCounterValue > 100) {
+        return 100;
+      } else {
+        return getCounterValue;
+      }
+    },
   },
 });
 
